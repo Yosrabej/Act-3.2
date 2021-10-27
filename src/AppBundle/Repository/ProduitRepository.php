@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * ProduitRepository
  *
@@ -10,4 +13,8 @@ namespace AppBundle\Repository;
  */
 class ProduitRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function detailproduct($id)
+    {
+        return $this->getEntityManager()->createQuery('SELECT product FROM AppBundle:Produit product WHERE product.id = ' . $id)->getResult();
+    }
 }
